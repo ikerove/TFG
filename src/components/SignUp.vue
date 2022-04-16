@@ -1,22 +1,23 @@
 <template>
-    
+
 
 <div class="container" id="wrap">
 	<div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <form action="r" method="post" accept-charset="utf-8" class="form" role="form">   <legend>Sign Up</legend>
+            <form action="r" method="post" accept-charset="utf-8" class="form" role="form" @submit.prevent = "signup(this.email, this.password)">  <legend>Sign Up</legend>
+                
                 <h4>It's free and always will be.</h4>
                 <div class="row">
                     <div class="col-xs-6 col-md-6">
-                        <input type="text" name="firstname" value="" class="form-control input-lg" placeholder="First Name"  />                        
+                        <input type="text" name="firstname"  class="form-control input-lg" placeholder="First Name" v-model="name" />                        
                     </div>
                     <div class="col-xs-6 col-md-6">
-                        <input type="text" name="lastname" value="" class="form-control input-lg" placeholder="Last Name"  />                        
+                        <input type="text" name="lastname" class="form-control input-lg" placeholder="Last Name" v-model="lastName" />                        
                     </div>
                 </div>
-                <input type="text" name="email" value="" class="form-control input-lg" placeholder="Your Email"  />
-                <input type="password" name="password" value="" class="form-control input-lg" placeholder="Password"  />
-                <input type="password" name="confirm_password" value="" class="form-control input-lg" placeholder="Confirm Password"  />                    
+                <input type="text" name="email"  class="form-control input-lg" placeholder="Your Email" v-model="email" />
+                <input type="password" name="password"  class="form-control input-lg" placeholder="Password" v-model="password" />
+                <input type="password" name="confirm_password"  class="form-control input-lg" placeholder="Confirm Password"  />                    
                 <label>Birth Date</label>                    
                 <div class="row">
                     <div class="col-xs-4 col-md-4">
@@ -164,8 +165,12 @@
                     <br />
               <span class="help-block">By clicking Create my account, you agree to our Terms and that you have read our Data Use Policy, including our Cookie Use.</span>
                     <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
-                        Create my account</button>
-            </form>          
+                        Create my account
+                    </button>
+            </form>     
+            <div class="alert alert-danger" role="alert" v-if = "error">
+                {{error}}
+            </div>     
         </div>
     </div>            
 </div>
@@ -173,8 +178,43 @@
 </template>
 
 <script>
+    import '@/api/firebase'
+    //import firebase from 'firebase/compat/app';
+    import "firebase/auth";
+    import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+    
     export default {
-        
+        name: 'SignUp',
+        data: function(){
+            return{
+                name: '',
+                lastName: '',
+                email: '',
+                password: '',
+                error: ''
+            }
+        },
+        methods:{
+            signup() {
+                const auth = getAuth();
+                createUserWithEmailAndPassword(auth, this.email, this.password)
+                .then(user => {
+                    console.log(user)
+                    // Signed in
+                    //const user = userCredential.user;
+                    //this.name = ''
+                    //this.email = ''
+                    //this. password = ''
+                    // ...
+                })
+                .catch((err) => {
+                    //const errorCode = error.code;
+                    this.err = err.code;
+                    //const errorMessage = error.message;
+                    // ..
+                });
+            }
+        }
     }
 </script>
 
