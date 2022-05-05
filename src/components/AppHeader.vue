@@ -24,12 +24,45 @@
           <li><router-link class="link" to="/LogIn">Novedades</router-link></li>
         </ul>
       </transition>
+      <div>
+        <ul>
+          <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Something else here</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">Separated link</a>
+    </div>
+  </li>
+        <b-nav pills>
+        <b-nav-item-dropdown id="my-nav-dropdown" text="Dropdown" toggle-class="nav-link-custom" right>
+          <b-dropdown-item>One</b-dropdown-item>
+          <b-dropdown-item>Two</b-dropdown-item>
+          <b-dropdown-divider></b-dropdown-divider>
+          <b-dropdown-item>Three</b-dropdown-item>
+        </b-nav-item-dropdown>
+        
+      
+        <router-link class="link" to="/LogIn">
+          <button class="btn btn-outline-success btn-lg my-3 my-sm-2" type="submit">Log In</button>
+        </router-link>
+        <router-link class="link" to="/SignUp"> 
+      
+        <button class="btn btn-outline-success btn-lg my-3 my-sm-2" type="submit">Sign Up</button>
+        </router-link>
+       </b-nav>
+       </ul>
+      </div>
+      
     </nav>
     
   </header>
 </template>
 
 <script>
+import { getAuth,onAuthStateChanged,signOut,} from "firebase/auth";
 export default {
   name: 'app-header',
   data: function() {
@@ -70,6 +103,28 @@ export default {
       this.mobileNav = false;
       return;
     },
+    logout(){
+      const auth = getAuth();
+      signOut(auth).then(() => {
+        alert('¡Sesión cerrada! Inicia sesión.');
+      }).catch((error) => {
+        console.log(error);
+      });
+    },
+    created() {
+      const auth = getAuth();
+      onAuthStateChanged(auth)
+      .then((user) => {
+        if(user){
+        this.user = user;
+        }else {
+          this.user = null;
+        }
+      })
+      .catch((error) =>{
+          console.log(error);
+      })
+    }
   },
 };
 </script>
@@ -98,6 +153,7 @@ header {
       margin-right: 1rem;
     }
 
+    
     .btn-header {
     background-color: #455A64;
     border: none;

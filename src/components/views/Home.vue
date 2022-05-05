@@ -48,6 +48,11 @@ export default {
     margin: 1.5rem;
  }
 
+ .mt-50 {
+      margin-top: 100px;
+    }
+
+
   .boards-collection {
     position: fixed;
     display: flex;
