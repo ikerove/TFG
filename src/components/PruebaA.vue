@@ -1,45 +1,55 @@
 <template>
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
-      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-    </a>
+    <router-link class="navbar-item" to="/">
+      <!--<img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">-->
+      <h3 class="title is-3">MyApp</h3>
 
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+    </router-link>
+
+    <a role="button" class="navbar-burger" :class="{'is-active': isOpen}"  @click.prevent="toggleMenu" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </a>
   </div>
 
-  <div id="navbarBasicExample" class="navbar-menu">
+  <div id="navbarBasicExample" class="navbar-menu" :class="{'is-active': isOpen}">
     <div class="navbar-start">
       <router-link class="navbar-item" to="/">
         Home
       </router-link>
 
       <router-link class="navbar-item" to="/">
-        Documentation
+        Certificados
       </router-link>
 
-      <div class="navbar-item has-dropdown is-hoverable">
+      <router-link class="navbar-item" to="/">
+        Categorias
+      </router-link>
+
+      <router-link class="navbar-item" to="/">
+        Marcas
+      </router-link>
+
+      <div class="navbar-item has-dropdown is-hoverable" v-if="user">
         <a class="navbar-link">
-          More
+          Admin
         </a>
 
         <div class="navbar-dropdown">
+          <router-link class="navbar-item" to="/AddProduct">
+            Añadir Certificado
+          </router-link>
           <a class="navbar-item">
-            About
+            Añadir producto
           </a>
           <a class="navbar-item">
-            Jobs
-          </a>
-          <a class="navbar-item">
-            Contact
+            Añadir marca
           </a>
           <hr class="navbar-divider">
           <a class="navbar-item">
-            Report an issue
+            Eliminar
           </a>
         </div>
       </div>
@@ -90,6 +100,7 @@ import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
         data() {
             return {
             user: null,
+            isOpen: false,
             }
         },
 
@@ -102,6 +113,11 @@ import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
                // An error happened.
                this.error = error.code;  
                }); 
+            },
+
+            toggleMenu (){
+                const status = !this.isOpen
+                this.isOpen = status
             }
         },
         created(){

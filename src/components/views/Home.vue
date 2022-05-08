@@ -2,12 +2,12 @@
   <body class = "panel">
     <h3> Mis Paneles</h3>
     <div class = "boards-collection">
-      <input
+      <!--<input
         type = "text"
         placeholder = "Añde un nuevo panel"
         v-model = "boardName"
         @keyup.enter = "add()"
-        />
+        />-->
       <board-card
         v-for="(board, index) in boards"
         :key = "index"

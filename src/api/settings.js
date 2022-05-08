@@ -5,4 +5,4 @@ export default{
   storageBucket: "proyectotfg-3c41d.appspot.com",
   messagingSenderId: "805469365884",
   appId: "1:805469365884:web:9f043151ad79d3ca1f4bf9"
-}
+};

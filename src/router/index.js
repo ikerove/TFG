@@ -7,6 +7,7 @@ import Home from '@/components/views/Home'
 import Board from '@/components/views/Board'
 import LogIn from '@/components/LogIn'
 import SignUp from '@/components/SignUp'
+import AddProduct from '@/components/views/AddProduct'
 
 const routes = [
   {
@@ -33,6 +34,12 @@ const routes = [
     path:"/SignUp",
     name: 'signup',
     component: SignUp
+  },
+
+  {
+    path:"/AddProduct",
+    name:"addproduct",
+    component: AddProduct
   }
 
 
