@@ -12,12 +12,12 @@
          <input v-model="producto.nombre" class="input" type="text" placeholder="e.g Vintage">
         </div>
     </div>
-    <div class="field">
+    <!--<div class="field">
         <label class="label">ID</label>
         <div class="control">
          <input v-model="producto.id" class="input" type="text" placeholder="e.g 00001">
         </div>
-    </div>
+    </div>-->
     <div class="control">
         <label class="label">Certificados</label>       
         <div class="select">
@@ -47,9 +47,13 @@
         </div>
     </div>
 
+    <div class="input-group my-3">
+        <input type="file" @change="buscarImagen($event)">
+    </div>
+
     <div class="field is-grouped is-grouped-right">
       <p class="control">
-        <a class="button is-primary">
+        <a class="button is-primary" @click.prevent="agregarDato()">
           Submit
         </a>
       </p>
@@ -62,9 +66,10 @@
 </template>
 
 <script>
-    import { collection, addDoc } from 'firebase/firestore/lite';
-    import { db } from "@/api/firebase";
+    import { collection, addDoc} from 'firebase/firestore/lite';
+    import { db} from "@/api/firebase";
     import router from '@/router/index'
+    import firebase from 'firebase/compat/app';
     export default {
         name: "AddProduct",
 
@@ -74,40 +79,80 @@
 
         data() {
             return {
-            productos: [],
+            imagenes: [],
+            file: null,
+            //datoImagen: null,
 
+            productos: [],
             producto: {
                 categoria: '',
                 nombre: '',
-                id: '',
+                //id: '',
                 certificados: '',
                 marca: '',
                 materiales: '', 
-                link: ''
+                link: '',
+                
             }
             }
         },
 
         methods: {
             async agregarDato(){
-                const docRef = await addDoc(collection(db, "productos"), {
-                    nombre: this.producto.nombre,
-                    id: this.producto.id,
-                    certificados: this.producto.certificados,
-                    marca: this.producto.marca,
-                    materiales: this.producto.materiales,
-                    link: this.producto.link,
+                try{
+                    var storageRef = firebase.storage().ref();
+                    await storageRef.child('imagenes').child(this.file.name).put(this.file)
+                    const urlDescarga = await storageRef.child('imagenes').child(this.file.name).getDownloadURL()
+                    
 
-                })
-                    .then(() => {
-                    router.go('/')
-                    console.log("Documento añadido");
-                    console.log(docRef);
+                    await addDoc(collection(db, "productos"), {
+                        nombre: this.producto.nombre,
+                        //id: this.producto.id,
+                        certificados: this.producto.certificados,
+                        marca: this.producto.marca,
+                        materiales: this.producto.materiales,
+                        link: this.producto.link,
+                        foto: urlDescarga,
+
                     })
-                    .catch(function(error) {
-                    console.error("Error al añadir el documento: ", error);
-                    });
+
+                    this.error = 'Image upload succesfully'
+                    this.file = null
+                }
+                catch(error){
+                    console.log(error);
+                }
+                finally{
+                    router.push('/')
+                }
+                  
                 },
+
+            buscarImagen(event){
+                    console.log(event.target.files[0]);
+                    const tipoArchivo = event.target.files[0].type;
+                    if(tipoArchivo === 'image/jpeg' || tipoArchivo === 'image/png'){
+                        this.file = event.target.files[0]
+                        this.error = null
+                    }
+                        else{
+                        this.error = 'Archivo no válido'
+                        this.file = null
+                        return 
+                        }
+                        const reader = new FileReader();
+                        reader.readAsDataURL(this.file);
+                        reader.onload = (e) => {
+                        this.datoImagen = e.target.result
+                        }
+                },
+            
+            subeImagen(){
+                var storageRef = firebase.storage().ref();
+                const refImg = storageRef.child("imagenes/" + this.file.name);
+                const metadata = { contentType: "img/jpeg" };
+                refImg.put(this.imagen, metadata).then((e) => console.log(e));
+            }
         }
     }
 </script>

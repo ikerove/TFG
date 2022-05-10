@@ -1,86 +1,120 @@
 <template>
   <body class = "panel">
     <h3> Mis Paneles</h3>
-    <div class = "boards-collection">
+    <!--<div class = "boards-collection">-->
       <!--<input
         type = "text"
         placeholder = "Añde un nuevo panel"
         v-model = "boardName"
         @keyup.enter = "add()"
         />-->
-      <board-card
+      <!--<board-card
         v-for="(board, index) in boards"
         :key = "index"
         :name = "board.name"
         :id = "board.id">
-      </board-card>
-    </div>
+      </board-card>-->
+   <!-- </div>-->
+      <div class="container my-5">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col" v-for="(item, index) in productos" :key="index">
+                    <div class="card">
+                    <img :src= "item.foto" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title text-center"> {{item.nombre}}</h5>
+                        <!--<p class="card-text text-center"> {{item.correo}}</p>-->
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
   </body>
 </template>
 
 <script>
-import BoardCard from '@/components/BoardCard'
+//import BoardCard from '@/components/BoardCard'
+import { collection, getDocs } from 'firebase/firestore/lite';
+import { db } from "@/api/firebase";
 export default {
   name: 'home-view',
-  components: {BoardCard},
+  //components: {BoardCard},
   data: function () {
     return {
-      boardName: '',
-      boards: [
-        { id: 1, name: 'Componente 1'}, 
-        { id: 2, name: 'Componente 2'}
-        
-      ]
+      //boardName: '',
+      //boards: [
+      //  { id: 1, name: 'Componente 1'}, 
+      //  { id: 2, name: 'Componente 2'}  
+      //]
+      productos: [],
+          producto: {
+            nombre: '',
+            //correo: '',
+            foto: ''
+          }
     }
   },
   methods: {
-    add: function (){
-      this.boards.push({name: this.boardName})
+      //  add: function (){
+      //    this.boards.push({name: this.boardName})
+      //  }
+      async obtenerDatos () { 
+      const querySnapshot = await getDocs(collection(db, "productos"));
+        querySnapshot.forEach((doc) => {
+        let producto = doc.data()
+        producto.id = doc.id
+        this.productos.push(producto)
+        console.log(producto)
+      });
     }
+  },
+
+  mounted() {
+    this.obtenerDatos();
   }
 
 }
 </script>
 
 <style lang="scss" scoped>
- h3 {
-    text-align: left;
-    margin: 1.5rem;
- }
-
- .mt-50 {
-      margin-top: 100px;
-    }
-
-
-  .boards-collection {
-    position: fixed;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: Wrap;
-    justify-content: center;
-    padding-top: 1rem;
-  }
-
-  input {
-    box-sizing: border-box;
-    background-color: #546E7A;
-    border: 2px solid D#546E7A;
-    border-radius: 3px;
-    font-size: 1.1rem;
-    outline: e;
-    padding: 0.5rem;
-    transition: all 600ms ease;
-
-    &:focus,
-    &:active {
-      background-color: white;
-      color: #546E7A;
-    }
-    &::placeholder {
-      color: white;
-    }
-  }
+//        h3 {
+//            text-align: left;
+//            margin: 1.5rem;
+//        }
+//
+//        .mt-50 {
+//              margin-top: 100px;
+//            }
+//
+//
+//          .boards-collection {
+//            position: fixed;
+//            display: flex;
+//            flex-direction: row;
+//            flex-wrap: Wrap;
+//            justify-content: center;
+//            padding-top: 1rem;
+//          }
+//
+//          input {
+//            box-sizing: border-box;
+//            background-color: #546E7A;
+//            border: 2px solid D#546E7A;
+//            border-radius: 3px;
+//            font-size: 1.1rem;
+//            outline: e;
+//            padding: 0.5rem;
+//            transition: all 600ms ease;
+//
+//            &:focus,
+//            &:active {
+//              background-color: white;
+//              color: #546E7A;
+//            }
+//            &::placeholder {
+//              color: white;
+//            }
+//          }
 
     
 </style>
