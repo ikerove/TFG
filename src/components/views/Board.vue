@@ -1,10 +1,7 @@
 <template>
-    <section>
-        <h3><span>Mis paneles</span> ▸ {{ name }} </h3>
-
-    </section>
+    
     <div>
-
+        
     </div>
 </template>
 
@@ -14,22 +11,26 @@
         components: {},
 
         props: {
-            name: String,
-            id: String
+            //name: String,
+            //id: String
+            //nombre: String,
+            //foto: String,
+            //id: String
+            producto: Object,
         }
     }
 </script>
 
 <style lang="scss" scoped>
-    section {
-        text-align: left;
-    }
-    h3 {
-        color: O#37474f;
-        text-align: left;
-        margin: 1.5rem;
-        span {
-            color: #546e7a;
-        }
-    }
+  //  section {
+  //      text-align: left;
+  //  }
+  //  h3 {
+  //      color: O#37474f;
+  //      text-align: left;
+  //      margin: 1.5rem;
+  //      span {
+  //          color: #546e7a;
+  //      }
+  //  }
 </style>

@@ -17,28 +17,38 @@
    <!-- </div>-->
       <div class="container my-5">
             <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="col" v-for="(item, index) in productos" :key="index">
+                <div class="col"
+                   v-for="(item, index) in productos" :key="index" :nombre="item.nombre" :id="item.id">
                     <div class="card">
-                    <img :src= "item.foto" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title text-center"> {{item.nombre}}</h5>
-                        <!--<p class="card-text text-center"> {{item.correo}}</p>-->
+                      <!--<router-link class= "link" to= "/board/:id">-->
+                        <router-link :to="{ name: 'board-card', params: { id: item.id } } ">
+                        <img :src= "item.foto" class="card-img-top">
+                        </router-link>
+                      <!--</router-link>-->
+                        
+                      <div class="card-body">
+                          <h5 class="card-title text-center"> {{item.nombre}}</h5>
+                          <!--<h5 class="card-title text-center"> {{item.id}}</h5>-->
+                          <!--<p class="card-text text-center"> {{item.correo}}</p>-->
+                          <button @click.prevent="muestraProducto(item.id)"> ver producto</button>
+                      </div>
                     </div>
-                    </div>
+                  
                 </div>
             </div>
-        </div>
+      </div>
 
   </body>
 </template>
 
 <script>
 //import BoardCard from '@/components/BoardCard'
-import { collection, getDocs } from 'firebase/firestore/lite';
+import { collection, getDocs, getDoc, doc } from 'firebase/firestore/lite';
 import { db } from "@/api/firebase";
 export default {
   name: 'home-view',
   //components: {BoardCard},
+  
   data: function () {
     return {
       //boardName: '',
@@ -46,6 +56,7 @@ export default {
       //  { id: 1, name: 'Componente 1'}, 
       //  { id: 2, name: 'Componente 2'}  
       //]
+      
       productos: [],
           producto: {
             nombre: '',
@@ -66,8 +77,32 @@ export default {
         this.productos.push(producto)
         console.log(producto)
       });
+    },
+    async muestraProducto(id) {
+      const docRef = doc(db, "productos", id);
+      const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+            this.producto = docSnap.data()
+            this.producto.id = docSnap.id
+
+            console.log(this.producto.id)
+            console.log(this.producto.nombre)
+            console.log(this.producto.marca)
+            console.log(this.producto.categoria)
+            console.log(this.producto.link)
+            console.log(this.producto.materiales)
+            } 
+            else {
+            console.log("¡No existe el documento!");
+            }
+
     }
   },
+
+  props: {
+    item: Object
+  },
+
 
   mounted() {
     this.obtenerDatos();

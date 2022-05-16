@@ -1,48 +1,14 @@
 <template>
     <div class="field">
-        <label class="label">Categoria</label>
-        <div class="control">
-         <input v-model="producto.categoria" class="input" type="text" placeholder="e.g Pantalones">
-        </div>
-    </div>
-
-    <div class="field">
         <label class="label">Nombre</label>
         <div class="control">
-         <input v-model="producto.nombre" class="input" type="text" placeholder="e.g Vintage">
-        </div>
-    </div>
-    <!--<div class="field">
-        <label class="label">ID</label>
-        <div class="control">
-         <input v-model="producto.id" class="input" type="text" placeholder="e.g 00001">
-        </div>
-    </div>-->
-    <div class="control">
-        <label class="label">Certificados</label>       
-        
-         <div class="control">
-         <input v-model="producto.certificados" class="input" type="text" placeholder="e.g ECO">
-        </div>   
-    </div>
-    
-    <div class="field">
-        <label class="label">Marca</label>
-        <div class="control">
-         <input v-model="producto.marca" class="input" type="text" placeholder="e.g Levis">
+         <input v-model="marca.nombre" class="input" type="text" placeholder="e.g Levis">
         </div>
     </div>
     <div class="field">
-        <label class="label">Materiales</label>
+        <label class="label">Certificados</label>
         <div class="control">
-         <input v-model="producto.materiales" class="input" type="text" placeholder="e.g Algodon">
-        </div>
-    </div>
-
-    <div class="field">
-        <label class="label">Link de compra</label>
-        <div class="control">
-         <input v-model="producto.link" class="input" type="link" placeholder="e.g. levis.com">
+         <input v-model="marca.certificados" class="input" type="text" placeholder="e.g RCS">
         </div>
     </div>
 
@@ -62,6 +28,7 @@
         </a>
       </p>
     </div>
+    
 </template>
 
 <script>
@@ -70,47 +37,34 @@
     import router from '@/router/index'
     import firebase from 'firebase/compat/app';
     export default {
-        name: "AddProduct",
-
-        components: {
-
-        },
+        name: "AddMarca",
 
         data() {
-            return {
+          return {
             imagenes: [],
             file: null,
-            //datoImagen: null,
 
-            productos: [],
-            producto: {
-                categoria: '',
+            marcas: [],
+            marca: {
                 nombre: '',
-                //id: '',
                 certificados: '',
-                marca: '',
-                materiales: '', 
-                link: '',
-                
+    
             }
-            }
+          }
         },
 
         methods: {
-            async agregarDato(){
+          async agregarDato(){
                 try{
                     var storageRef = firebase.storage().ref();
                     await storageRef.child('imagenes').child(this.file.name).put(this.file)
                     const urlDescarga = await storageRef.child('imagenes').child(this.file.name).getDownloadURL()
                     
 
-                    await addDoc(collection(db, "productos"), {
-                        nombre: this.producto.nombre,
+                    await addDoc(collection(db, "marcas"), {
+                        nombre: this.marca.nombre,
                         //id: this.producto.id,
-                        certificados: this.producto.certificados,
-                        marca: this.producto.marca,
-                        materiales: this.producto.materiales,
-                        link: this.producto.link,
+                        certificados: this.marca.certificados,                    
                         foto: urlDescarga,
 
                     })
@@ -126,8 +80,7 @@
                 }
                   
                 },
-
-            buscarImagen(event){
+          buscarImagen(event){
                     console.log(event.target.files[0]);
                     const tipoArchivo = event.target.files[0].type;
                     if(tipoArchivo === 'image/jpeg' || tipoArchivo === 'image/png'){
@@ -153,6 +106,7 @@
                 refImg.put(this.imagen, metadata).then((e) => console.log(e));
             }
         }
+        
     }
 </script>
 

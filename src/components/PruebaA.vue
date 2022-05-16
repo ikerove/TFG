@@ -20,15 +20,15 @@
         Home
       </router-link>
 
-      <router-link class="navbar-item" to="/">
+      <router-link class="navbar-item" to="/Certificados">
         Certificados
       </router-link>
 
-      <router-link class="navbar-item" to="/">
+      <router-link class="navbar-item" to="/Categorias">
         Categorias
       </router-link>
 
-      <router-link class="navbar-item" to="/">
+      <router-link class="navbar-item" to="/Marcas">
         Marcas
       </router-link>
 
@@ -38,19 +38,22 @@
         </a>
 
         <div class="navbar-dropdown">
-          <router-link class="navbar-item" to="/AddProduct">
-            Añadir Certificado
+          <router-link class="navbar-item" to="/AddCertificate">
+            Añadir certificado
           </router-link>
-          <a class="navbar-item">
+          <router-link class="navbar-item" to="/AddProduct">
             Añadir producto
-          </a>
-          <a class="navbar-item">
+          </router-link>
+          <router-link class="navbar-item" to="/AddMarca">
             Añadir marca
-          </a>
+          </router-link>
+          <router-link class="navbar-item" to="/AddCategoria">
+            Añadir categoria
+          </router-link>
           <hr class="navbar-divider">
-          <a class="navbar-item">
+          <router-link class="navbar-item" to="/Delete">
             Eliminar
-          </a>
+          </router-link>
         </div>
       </div>
     </div>
