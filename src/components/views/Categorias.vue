@@ -14,7 +14,9 @@
                           <h5 class="card-title text-center"> {{item.nombre}}</h5>
                           <!--<h5 class="card-title text-center"> {{item.id}}</h5>-->
                           <!--<p class="card-text text-center"> {{item.correo}}</p>-->
-                          <button @click.prevent="muestraProducto(item.id)"> ver producto</button>
+                          <router-link to="/">
+                            <button > Ver productos</button>
+                          </router-link>
                       </div>
                     </div>
                   

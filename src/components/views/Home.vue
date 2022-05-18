@@ -1,6 +1,6 @@
 <template>
-  <body class = "panel">
-    <h3> Mis Paneles</h3>
+  <!--<body class = "panel">-->
+    
     <!--<div class = "boards-collection">-->
       <!--<input
         type = "text"
@@ -22,7 +22,7 @@
                     <div class="card">
                       <!--<router-link class= "link" to= "/board/:id">-->
                         <router-link :to="{ name: 'board-card', params: { id: item.id } } ">
-                        <img :src= "item.foto" class="card-img-top">
+                        <img :src= "item.foto" width="500" height="10">
                         </router-link>
                       <!--</router-link>-->
                         
@@ -30,24 +30,28 @@
                           <h5 class="card-title text-center"> {{item.nombre}}</h5>
                           <!--<h5 class="card-title text-center"> {{item.id}}</h5>-->
                           <!--<p class="card-text text-center"> {{item.correo}}</p>-->
-                          <button @click.prevent="muestraProducto(item.id)"> ver producto</button>
+                          <!--Este es importante<button @click.prevent="muestraProducto(item.id)"> ver producto</button>-->
+                          <router-link to="/Pantalones/Pantalon1">
+                            <button > ver producto</button>
+                          </router-link>
                       </div>
                     </div>
                   
                 </div>
             </div>
       </div>
-
-  </body>
+  <app-footer></app-footer>
+  <!--</body>-->
 </template>
 
 <script>
 //import BoardCard from '@/components/BoardCard'
+import AppFooter from '@/components/AppFooter'
 import { collection, getDocs, getDoc, doc } from 'firebase/firestore/lite';
 import { db } from "@/api/firebase";
 export default {
   name: 'home-view',
-  //components: {BoardCard},
+  components: {AppFooter},
   
   data: function () {
     return {

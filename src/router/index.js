@@ -14,8 +14,11 @@ import AddCategoria from '@/components/views/AddCategoria'
 import Categorias from '@/components/views/Categorias'
 import AddMarca from '@/components/views/AddMarca'
 import Marcas from '@/components/views/Marcas'
-
 import DeleteE from '@/components/views/DeleteE'
+
+import ZCertificado from '@/components/views/ZCertificado'
+import ZProducto from '@/components/views/ZProducto'
+import ZMarca from '@/components/views/ZMarca'
 
 
 const routes = [
@@ -92,6 +95,25 @@ const routes = [
     name:"deleteE",
     component: DeleteE
   },
+
+  {
+    path:"/Certificados/Certificado1",
+    name:"Certi1",
+    component: ZCertificado
+  },
+
+  {
+    path:"/Pantalones/Pantalon1",
+    name:"Pantalon1",
+    component: ZProducto
+  },
+
+  {
+    path:"/Marcas/Marca1",
+    name:"Marca1",
+    component: ZMarca
+  },
+
 
 
 
