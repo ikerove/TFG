@@ -32,10 +32,18 @@
          <input v-model="producto.marca" class="input" type="text" placeholder="e.g Levis">
         </div>
     </div>
+
     <div class="field">
         <label class="label">Materiales</label>
         <div class="control">
          <input v-model="producto.materiales" class="input" type="text" placeholder="e.g Algodon">
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Valoracion</label>
+        <div class="control">
+         <input v-model="producto.valoracion" class="input" type="text" placeholder="e.g 1">
         </div>
     </div>
 
@@ -107,6 +115,7 @@
                     await addDoc(collection(db, "productos"), {
                         nombre: this.producto.nombre,
                         //id: this.producto.id,
+                        categoria: this.producto.categoria,
                         certificados: this.producto.certificados,
                         marca: this.producto.marca,
                         materiales: this.producto.materiales,

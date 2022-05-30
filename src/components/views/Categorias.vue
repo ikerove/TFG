@@ -5,7 +5,7 @@
                    v-for="(item, index) in categorias" :key="index" :nombre="item.nombre" :id="item.id">
                     <div class="card">
                       <!--<router-link class= "link" to= "/board/:id">-->
-                        <router-link :to="{ name: 'board-card', params: { id: item.id } } ">
+                        <router-link :to="{ name: 'board-card-cat', params: { id: item.id } } ">
                         <img :src= "item.foto" class="card-img-top">
                         </router-link>
                       <!--</router-link>-->
@@ -14,9 +14,9 @@
                           <h5 class="card-title text-center"> {{item.nombre}}</h5>
                           <!--<h5 class="card-title text-center"> {{item.id}}</h5>-->
                           <!--<p class="card-text text-center"> {{item.correo}}</p>-->
-                          <router-link to="/">
+                          <!--<router-link to="/">
                             <button > Ver productos</button>
-                          </router-link>
+                          </router-link>-->
                       </div>
                     </div>
                   

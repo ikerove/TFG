@@ -1,16 +1,16 @@
 <template>
     <div id="app">
-      <app-header></app-header>
+      <!--<app-header></app-header>-->
       <prueba-a></prueba-a>
       <router-view class="container"></router-view>
-      <app-footer></app-footer>
+      <!--<app-footer></app-footer>-->
     </div>
 </template>
 
 <script>
 
 //import AppHeader from './components/AppHeader'
-import AppFooter from './components/AppFooter'
+//import AppFooter from './components/AppFooter'
 import PruebaA from './components/PruebaA'
 
 export default {
@@ -18,7 +18,7 @@ export default {
   components: {
     //AppHeader,
     PruebaA,
-    AppFooter,
+    //AppFooter,
     
    
   }

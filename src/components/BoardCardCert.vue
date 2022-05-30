@@ -3,8 +3,8 @@
       <!--<span class="board-card-title">❏ {{ name }}</span>-->
        
  <!-- </router-link>-->
- <div class= "carta">
- <board-view :item="item"/>
+ <div class= "carta2">
+ <board-view-cert :item="item"/>
  </div>
  
 </template>
@@ -13,18 +13,13 @@
 //import Board from '@/components/Board'
 
 export default {
-  name: 'board-card',
-  props: {//["id"],
-    //id: String,
-    //name: String
-    //nombre: String,
-    //foto: String,
-    //id: String
+  name: 'board-card-cert',
+  props: {
     id: String
     
   },
   components: {
-    Board
+    BoardCert
   },
 
   data(){
@@ -34,16 +29,6 @@ export default {
     
   },
 
-  methods: {
-    
-  },
-   created() {
-    
-
-    },
-
-  
-  
 }
 </script>
 

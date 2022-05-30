@@ -1,6 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+import { VueStars } from "vue-stars"
+
 
 //import VueAxios from 'vue-axios'
 
@@ -14,5 +16,5 @@ import "bootstrap/dist/js/bootstrap.min";
 
 //import { Axios } from 'axios'
 // .use(VueAxios, Axios)
-createApp(App).use(router).mount('#app')
+createApp(App).component("vue-stars", VueStars).use(router).mount('#app')
 

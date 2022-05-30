@@ -15,6 +15,8 @@
         :id = "board.id">
       </board-card>-->
    <!-- </div>-->
+   <div class= "title">
+     <h3>Ultimos añadidos</h3>
       <div class="container my-5">
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <div class="col"
@@ -31,27 +33,28 @@
                           <!--<h5 class="card-title text-center"> {{item.id}}</h5>-->
                           <!--<p class="card-text text-center"> {{item.correo}}</p>-->
                           <!--Este es importante<button @click.prevent="muestraProducto(item.id)"> ver producto</button>-->
-                          <router-link to="/Pantalones/Pantalon1">
+                          <!--<router-link to="/Pantalones/Pantalon1">
                             <button > ver producto</button>
-                          </router-link>
+                          </router-link>-->
                       </div>
                     </div>
                   
                 </div>
             </div>
       </div>
-  <app-footer></app-footer>
+    </div>
+  <!--<app-footer></app-footer>-->
   <!--</body>-->
 </template>
 
 <script>
 //import BoardCard from '@/components/BoardCard'
-import AppFooter from '@/components/AppFooter'
+//import AppFooter from '@/components/AppFooter'
 import { collection, getDocs, getDoc, doc } from 'firebase/firestore/lite';
 import { db } from "@/api/firebase";
 export default {
   name: 'home-view',
-  components: {AppFooter},
+  //components: {AppFooter},
   
   data: function () {
     return {

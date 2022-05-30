@@ -5,7 +5,7 @@
                    v-for="(item, index) in marcas" :key="index" :nombre="item.nombre" :id="item.id">
                     <div class="card">
                       <!--<router-link class= "link" to= "/board/:id">-->
-                        <router-link :to="{ name: 'board-card', params: { id: item.id } } ">
+                        <router-link :to="{ name: 'board-card-marca', params: { id: item.id } } ">
                         <img :src= "item.foto" class="card-img-top">
                         </router-link>
                       <!--</router-link>-->
@@ -14,9 +14,9 @@
                           <h5 class="card-title text-center"> {{item.nombre}}</h5>
                           <!--<h5 class="card-title text-center"> {{item.id}}</h5>-->
                           <!--<p class="card-text text-center"> {{item.correo}}</p>-->
-                          <router-link to="/Marcas/Marca1">
+                          <!--<router-link to="/Marcas/Marca1">
                             <button > Ver marca</button>
-                          </router-link>
+                          </router-link>-->
                       </div>
                     </div>
                   

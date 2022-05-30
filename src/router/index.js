@@ -5,6 +5,9 @@ import {createRouter, createWebHistory} from 'vue-router'
 
 import Home from '@/components/views/Home'
 import Board from '@/components/views/Board'
+import BoardCert from '@/components/views/BoardCert'
+import BoardMarca from '@/components/views/BoardMarca'
+import BoardCat from '@/components/views/BoardCat'
 import LogIn from '@/components/LogIn'
 import SignUp from '@/components/SignUp'
 import AddProduct from '@/components/views/AddProduct'
@@ -32,6 +35,30 @@ const routes = [
     path: "/board/:id",
     name: 'board-card',
     component: Board,
+    props: true
+
+  },
+
+  {
+    path: "/board/:id",
+    name: 'board-card-cert',
+    component: BoardCert,
+    props: true
+
+  },
+
+  {
+    path: "/board/:id",
+    name: 'board-card-marca',
+    component: BoardMarca,
+    props: true
+
+  },
+
+  {
+    path: "/board/:id",
+    name: 'board-card-cat',
+    component: BoardCat,
     props: true
 
   },
