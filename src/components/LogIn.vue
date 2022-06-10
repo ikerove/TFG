@@ -33,6 +33,7 @@
 
 <script>
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import router from '@/router/index'
 export default {
   data () {
     return {     
@@ -53,7 +54,7 @@ export default {
 					// Signed in
 					const user = userCredential.user;
 					console.log(user)
-					this.$router.push({path: 'home'})
+					router.push('/')
 					// ...
 				})
 				.catch((err) => {

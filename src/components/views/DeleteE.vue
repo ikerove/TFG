@@ -1,4 +1,7 @@
 <template>
+<div class="container" id="wrap">
+	
+    <div class="col-md-6 col-md-offset-3">
     <div class="field">
         <label class="label">Coleccion</label>
         <div class="control">
@@ -24,6 +27,8 @@
             Cancel
         </a>
       </p>
+    </div>
+    </div>
     </div>
 </template>
 

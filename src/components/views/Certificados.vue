@@ -1,4 +1,6 @@
 <template>
+<div class= "title">
+    <h3>Certificados</h3>
     <div class="container my-5">
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <div class="col"
@@ -24,6 +26,7 @@
                 </div>
             </div>
       </div>
+</div>
 </template>
 
 <script>
