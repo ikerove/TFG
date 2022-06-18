@@ -5,14 +5,14 @@
     <div class="field">
         <label class="label">Coleccion</label>
         <div class="control">
-         <input v-model="item.colecion" class="input" type="text" placeholder="e.g Tiro Alto">
+         <input v-model="item.colecion" class="input" type="text" placeholder="e.g Productos">
         </div>
     </div>
 
     <div class="field">
         <label class="label">Id</label>
         <div class="control">
-         <input v-model="item.id" class="input" type="text" placeholder="e.g Vintage">
+         <input v-model="item.id" class="input" type="text" placeholder="e.g udaAvweEFKwAjIS907QV">
         </div>
     </div>
 
