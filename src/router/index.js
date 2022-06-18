@@ -18,6 +18,7 @@ import Categorias from '@/components/views/Categorias'
 import AddMarca from '@/components/views/AddMarca'
 import Marcas from '@/components/views/Marcas'
 import DeleteE from '@/components/views/DeleteE'
+import Favoritos from '@/components/views/Favoritos'
 
 import ZCertificado from '@/components/views/ZCertificado'
 import ZProducto from '@/components/views/ZProducto'
@@ -115,6 +116,12 @@ const routes = [
     path:"/Marcas",
     name:"marcasA",
     component: Marcas
+  },
+
+  {
+    path:"/Favoritos",
+    name:"favoritosA",
+    component: Favoritos
   },
 
   {

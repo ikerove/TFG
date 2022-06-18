@@ -39,6 +39,9 @@
             <label>Valoración: ★★★★★</label>
             </label>
             <br><br>
+            <button id ="eliminar-favoritos" class="button"  v-if= "favorito.has(this.result.id)" @click="eliminarFavorito">Añadido a favoritos</button>
+            <button id ="añadir-favoritos" class="button"  v-else @click="addFavorito" >Añadir a favoritos</button>
+            <br><br>
             <label id="nombre-link" ><a target="_blank" :href= "producto2.link">Compra este producto </a></label>
             <br>
             </h3>
@@ -55,11 +58,17 @@ import { db } from "@/api/firebase";
         name: 'board-view',
         data() {
             return{
+                favorito: new Map(),
+                resultados:[],
+                    result:{
+                    id: '1',
+                    nombre: 'aa'
+                },
                 producto2: {
                     nombre: '',
                     //correo: '',
                     foto: ''
-          }
+                }
             }
         },
         components: {},
@@ -97,8 +106,25 @@ import { db } from "@/api/firebase";
                     console.log("¡No existe el documento!");
                     }
 
-            }
+            },
+
+        addFavorito() {
+        console.log("añadido");
+        this.favorito.set(this.result.id, this.result)
+        console.log(this.result);
+        
+        
+
         },
+
+        eliminarFavorito() {
+        console.log("eliminado");
+        this.favorito.delete(this.result.id, this.result)
+        console.log(this.result);
+        },
+        },
+
+        
 
         mounted(){
             this.muestraProducto(this.id);

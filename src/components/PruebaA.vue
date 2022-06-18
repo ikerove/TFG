@@ -33,7 +33,7 @@
       </router-link>
 
       <div class="navbar-item has-dropdown is-hoverable" v-if="user">
-        <a class="navbar-link">
+        <a class="navbar-link" v-if="user.email == 'usuario@gmail.com'">
           Admin
         </a>
 
@@ -56,6 +56,20 @@
           </router-link>
         </div>
       </div>
+      
+      <div class="navbar-item" v-if="user">
+        <a  v-if="user.email == 'ikerodri@gmail.com'"> 
+          <router-link class="navbar-item" to="/Favoritos">
+
+          
+          Favoritos
+          
+        </router-link>
+        </a>
+      </div>
+        
+        
+      
     </div>
 
     <div class="navbar-end">
@@ -69,7 +83,7 @@
                         <router-link class="navbar-item" to="/">
                             Main
                         </router-link>
-                        <a class="navbar-item" @click.prevent="logout">
+                        <a class="navbar-item" @click.prevent="logout()">
                             Log out
                         </a>
                         
@@ -112,9 +126,11 @@ import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
                const auth = getAuth();
                signOut(auth).then(() => {
                // Sign-out successful.
+               console.log("sesion cerrada")
                }).catch((error) => {
                // An error happened.
-               this.error = error.code;  
+               this.error = error.code; 
+               console.log("fallo al cerrrar sesion") 
                }); 
             },
 

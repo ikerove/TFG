@@ -50,7 +50,7 @@
 <script>
 //import BoardCard from '@/components/BoardCard'
 //import AppFooter from '@/components/AppFooter'
-import { collection, getDocs, getDoc, doc } from 'firebase/firestore/lite';
+import { collection, getDocs, getDoc, doc} from 'firebase/firestore/lite';
 import { db } from "@/api/firebase";
 export default {
   name: 'home-view',
@@ -63,7 +63,6 @@ export default {
       //  { id: 1, name: 'Componente 1'}, 
       //  { id: 2, name: 'Componente 2'}  
       //]
-      
       productos: [],
           producto: {
             nombre: '',
