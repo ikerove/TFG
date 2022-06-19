@@ -13,7 +13,7 @@
         <div class="column">
             <br><br>
             <h3>
-            <label id ="nombre-producto" ref ="nombre-producto"> Nombre: {{producto2.nombre}} </label>
+            <label id ="nombre-producto" ref ="nombre-producto"> Nombre: {{producto2.nombre}}</label>
             <br><br>
             <label id ="nombre-certificados"> Certificados que tiene este producto: </label><br>
             <label>{{producto2.certificados}}</label>
@@ -38,9 +38,14 @@
             <label v-else-if="producto2.valoracion == '5'">
             <label>Valoración: ★★★★★</label>
             </label>
-            <br><br>
-            <button id ="eliminar-favoritos" class="button"  v-if= "favorito.has(this.result.id)" @click="eliminarFavorito">Añadido a favoritos</button>
-            <button id ="añadir-favoritos" class="button"  v-else @click="addFavorito" >Añadir a favoritos</button>
+            
+            <div class="navbar-item" v-if="user">
+            <a  v-if="user.email != 'usuario@gmail.com'"> 
+            <br>
+            <button id ="eliminar-favoritos" class="button is-medium is-warning"  v-if="favorito.has(this.result.id)" @click="eliminarFavorito">Añadido a favoritos</button>
+            <button id ="añadir-favoritos" class="button is-medium is-warning"  v-else @click="addFavorito" >Añadir a favoritos</button>
+            </a>
+            </div>
             <br><br>
             <label id="nombre-link" ><a target="_blank" :href= "producto2.link">Compra este producto </a></label>
             <br>
@@ -54,10 +59,12 @@
 <script>
 import { getDoc, doc } from 'firebase/firestore/lite';
 import { db } from "@/api/firebase";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
     export default {
         name: 'board-view',
         data() {
             return{
+                user: null,
                 favorito: new Map(),
                 resultados:[],
                     result:{
@@ -92,7 +99,6 @@ import { db } from "@/api/firebase";
                     this.producto2 = docSnap.data()
                     //this.producto2.id = docSnap.id
 
-
                     console.log(this.producto2.id)
                     
 
@@ -124,7 +130,21 @@ import { db } from "@/api/firebase";
         },
         },
 
-        
+        created(){
+            const auth = getAuth();
+            onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is signed in, see docs for a list of available properties
+                // https://firebase.google.com/docs/reference/js/firebase.User
+                //const uid = user.uid;
+                this.user = user
+                
+            } else {
+                // User is signed out
+                this.user = null
+            }
+            });
+        },
 
         mounted(){
             this.muestraProducto(this.id);

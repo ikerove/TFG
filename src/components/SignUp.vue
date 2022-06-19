@@ -16,8 +16,8 @@
                         <input type="text" name="lastname" class="form-control input-lg" placeholder="Apellido" v-model="lastName" />                        
                     </div>
                 </div>
-                <br>
-                <input type="text" name="nif"  class="form-control input-lg" placeholder="NIF" v-model="nif" />
+                
+                <!--<input type="text" name="nif"  class="form-control input-lg" placeholder="NIF" v-model="nif" />-->
                 <br>
                 <input type="text" name="email"  class="form-control input-lg" placeholder="Email" v-model="email" />
                 <br>

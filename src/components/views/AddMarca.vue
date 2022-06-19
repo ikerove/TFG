@@ -25,11 +25,7 @@
           Submit
         </a>
       </p>
-      <p class="control">
-        <a class="button is-light">
-            Cancel
-        </a>
-      </p>
+      
     </div>
     </div>
     </div>

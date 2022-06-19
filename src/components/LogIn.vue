@@ -43,11 +43,10 @@ export default {
     }
   },
   name: 'aaAA',
+  
   methods: {
     login() {
-      //console.log(this.user);
-                //console.log(this.password);
-
+    
 				const auth = getAuth();
 				signInWithEmailAndPassword(auth, this.email, this.password)
 				.then((userCredential) => {
@@ -58,11 +57,10 @@ export default {
 					// ...
 				})
 				.catch((err) => {
-					//const errorCode = error.code;
-					//const errorMessage = error.message;
+					
 					this.err = err.code;
 				});
-            }
+      }
         
   }
 }

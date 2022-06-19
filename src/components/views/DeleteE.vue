@@ -5,7 +5,7 @@
     <div class="field">
         <label class="label">Coleccion</label>
         <div class="control">
-         <input v-model="item.colecion" class="input" type="text" placeholder="e.g Productos">
+         <input v-model="item.colecion" class="input" type="text" placeholder="e.g productos">
         </div>
     </div>
 
@@ -22,11 +22,7 @@
           Delete
         </a>
       </p>
-      <p class="control">
-        <a class="button is-light">
-            Cancel
-        </a>
-      </p>
+      
     </div>
     </div>
     </div>
@@ -55,14 +51,19 @@
         },
 
         methods: {
-            async eliminarDato (colecion,id){
+            async eliminarDato (colecion, id){
+                
                 if(colecion == "productos"){
                 await deleteDoc(doc(db, "productos", id ));
                 }else if(colecion == "certificados"){
                 await deleteDoc(doc(db, "certificados", id ));
+                }else if(colecion == "marcas"){
+                await deleteDoc(doc(db, "marcas", id ));
+                }else if(colecion == "categorias"){
+                await deleteDoc(doc(db, "categorias", id ));
                 }
                 //await deleteDoc(doc(db, "productos", id ));
-                router.go('/')
+                router.push('/')
                 
 
             },

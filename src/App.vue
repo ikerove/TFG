@@ -1,7 +1,7 @@
 <template>
     <div id="app">
       <!--<app-header></app-header>-->
-      <prueba-a></prueba-a>
+      <AppHeaderr/>
       <router-view class="container"></router-view>
       <!--<app-footer></app-footer>-->
     </div>
@@ -11,13 +11,13 @@
 
 //import AppHeader from './components/AppHeader'
 //import AppFooter from './components/AppFooter'
-import PruebaA from './components/PruebaA'
+import AppHeaderr from './components/AppHeaderr'
 
 export default {
   name: 'app',
   components: {
     //AppHeader,
-    PruebaA,
+    AppHeaderr,
     //AppFooter,
     
    
